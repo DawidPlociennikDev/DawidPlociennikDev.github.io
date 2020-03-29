@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/";
 
-$config['base_url'] = $actual_link . 'admin/';
+$config['base_url'] = $actual_link . 'DawidPlociennikDev.github.io/admin/';
 
 $config['uri_protocol']	= 'REQUEST_URI';
 

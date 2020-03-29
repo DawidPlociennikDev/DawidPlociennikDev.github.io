@@ -6,10 +6,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'pogodadev',
+	'hostname' => '66062.m.tld.pl',
+	'username' => 'admin66062_plociennikdev',
+	'password' => '6Iw^Y9JWXd',
+	'database' => 'baza66062_plociennikdev',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
