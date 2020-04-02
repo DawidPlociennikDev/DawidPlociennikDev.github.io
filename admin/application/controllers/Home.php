@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
 			redirect('admin');
 		}
 	}

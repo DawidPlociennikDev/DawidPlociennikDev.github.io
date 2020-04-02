@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Articles extends CI_Controller {
 
 	public function index() {
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
 			if (!$this->db->table_exists($this->uri->segment(1))){
 				$this->base_m->create_table($this->uri->segment(1));
 			}
@@ -20,7 +20,7 @@ class Articles extends CI_Controller {
 	}
 
 	public function form($type, $id = '') {
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
             // DEFAULT DATA
 			$data = loadDefaultData();
 
@@ -34,7 +34,7 @@ class Articles extends CI_Controller {
 	} 
 
 	public function action($type, $table, $id = '') {
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
 			$now = date('Y-m-d');
 			if (!is_dir('uploads/'.$now)) {
 				mkdir('./uploads/' . $now, 0777, TRUE);

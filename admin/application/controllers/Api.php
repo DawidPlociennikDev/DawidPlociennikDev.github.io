@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Api extends CI_Controller {
 
 	public function sensor() {
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
 			$api = $this->api_m->get_current('sensor_data');
 			$this->output
              	->set_content_type('application/json')
@@ -17,7 +17,7 @@ class Api extends CI_Controller {
 	}
 
 	public function blog() {
-		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
 			$api = $this->api_m->get_current('articles');
 			$this->output
              	->set_content_type('application/json')
