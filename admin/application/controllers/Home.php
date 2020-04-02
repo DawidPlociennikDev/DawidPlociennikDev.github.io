@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
+			redirect('admin');
+		}
+	}
+
 	public function index() {
 		$this->form_validation->set_rules('login', 'Login', 'min_length[2]|trim');
 		$this->form_validation->set_rules('password', 'Hasło', 'min_length[6]|trim');

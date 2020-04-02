@@ -144,3 +144,11 @@
 	
  
 })(jQuery); 
+
+
+$(window).on('load', function () {
+    setTimeout(function () { 
+        $(".global_alert").fadeOut("slow", function () {
+        });
+    }, 4000);
+});

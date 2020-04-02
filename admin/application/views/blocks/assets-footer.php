@@ -28,3 +28,10 @@
     <script src="<?= assetsUrl(); ?>js/chat/moment.min.js"></script>
     <script src="<?= assetsUrl(); ?>js/chat/jquery.chat.js"></script>
     <script src="<?= assetsUrl(); ?>js/main.js"></script>
+    <script src="<?= assetsUrl(); ?>js/data-table/jquery.dataTables.min.js"></script>
+    <script src="<?= assetsUrl(); ?>js/data-table/data-table-act.js"></script>
+    <script src="<?= assetsUrl(); ?>js/dropzone/dropzone.js"></script>
+    <script src="<?= assetsUrl(); ?>js/bootstrap-select/bootstrap-select.js"></script>
+    <script src="<?= assetsUrl(); ?>js/summernote/summernote-updated.min.js"></script>
+    <script src="<?= assetsUrl(); ?>js/summernote/summernote-active.js"></script>
+    <script src="<?= assetsUrl(); ?>js/photoHelper.js"></script>

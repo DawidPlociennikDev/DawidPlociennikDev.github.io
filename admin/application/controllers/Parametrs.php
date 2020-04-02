@@ -1,18 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Media extends CI_Controller {
+class Parametrs extends CI_Controller {
 
 	public function index() {
 		if(checkAccess($access_group = ['administrator', 'redaktor'], $_SESSION['rola'])) {
-			if (!$this->db->table_exists($this->uri->segment(2))){
-				$this->base_m->create_table($this->uri->segment(2));
+			if (!$this->db->table_exists($this->uri->segment(1))){
+				$this->base_m->create_table($this->uri->segment(1));
 			}
+
             // DEFAULT DATA
 			$data = loadDefaultData();
 
-			$data['rows'] = $this->back_m->get_all($this->uri->segment(2));
-			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
+			$data['rows'] = $this->back_m->get_all($this->uri->segment(1));
+			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
 			redirect('panel');
 		}
@@ -24,9 +25,9 @@ class Media extends CI_Controller {
 			$data = loadDefaultData();
 
             if($id != '') {
-			    $data['value'] = $this->back_m->get_one($this->uri->segment(2), $id);
+			    $data['v'] = $this->back_m->get_one($this->uri->segment(1), $id);
             }
-			echo loadSubViewsBack($this->uri->segment(2), $type, $data);
+			echo loadSubViewsBack($this->uri->segment(1), 'form', $data);
 		} else {
 			redirect('panel');
 		}
@@ -39,36 +40,31 @@ class Media extends CI_Controller {
 				mkdir('./uploads/' . $now, 0777, TRUE);
 			}
 			$config['upload_path'] = './uploads/'.$now;
-			$config['allowed_types'] = '*';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = 0;
 			$config['max_width'] = 0;
 			$config['max_height'] = 0;
 			$this->load->library('upload',$config);
 			$this->upload->initialize($config);
 			
-			foreach ($_POST as $key => $value) {
+			if(isset($_FILES)) {
+				if ($this->upload->do_upload('photo')) {
+					$data = $this->upload->data();
+					$insert['photo'] = $now.'/'.$data['file_name'];  
+				}
+			}
 
+			foreach ($_POST as $key => $value) {
 				if (!$this->db->field_exists($key, $table)) {
 					$this->base_m->create_column($table, $key);
 				}
-
-				if($key == 'name_file_1') {
-					if ($this->upload->do_upload('file_1')) {
-						$data = $this->upload->data();
-						$insert['name'] = $data['file_name'];   
-						$insert['raw_name'] = $data['raw_name'];   
-						$insert['type'] = $data['file_type'];   
-						$insert['size'] = $data['file_size'];   
-						$insert['full_path'] = $data['full_path'];   
-						$insert['file_path'] = $data['file_path'];  
-						if ($data['file_type'] != 'image/svg' && isOnWebp()) {
-							convert__to__webp($now.'/'.$data['file_name']); 
-						} 
-					}
+				if($key == 'removed_photo') {
+					$insert['photo'] = ''; 
 				} else {
 					$insert[$key] = $value; 
 				}
             }
+
             if($type == 'insert') {
 			    $this->back_m->insert($table, $insert);
 			    $this->session->set_flashdata('flashdata', 'Rekord został dodany!');
@@ -76,7 +72,8 @@ class Media extends CI_Controller {
 			    $this->back_m->update($table, $insert, $id);
 			    $this->session->set_flashdata('flashdata', 'Rekord został zaktualizowany!');   
             }
-			redirect('panel/'.$table);
+
+			redirect($table);
 		} else {
 			redirect('panel');
 		}

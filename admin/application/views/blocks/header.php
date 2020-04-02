@@ -1,9 +1,25 @@
+<?php if(isset($_SESSION['global_alert_success'])): ?>
+    <div class="alert alert-success alert-dismissible global_alert" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="notika-icon notika-close"></i></span>
+        </button> 
+        <?php echo $_SESSION['global_alert_success']; ?>
+    </div>
+<?php endif; ?> 
+<?php if(isset($_SESSION['global_alert_error'])): ?>
+    <div class="alert alert-danger alert-dismissible global_alert" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="notika-icon notika-close"></i></span>
+        </button> 
+        <?php echo $_SESSION['global_alert_error']; ?>
+    </div>
+<?php endif; ?> 
     <div class="header-top-area">
         <div class="container">
             <div class="row menu">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="#" class="logo_url">
+                        <a href="<?= base_url(''); ?>" class="logo_url">
                             <img src="<?= assetsUrl(); ?>img/logo/logoPWSZ.png" alt="" />
                             <span class="ml-2">PWSZ Legnica</span>
                         </a>
@@ -13,7 +29,7 @@
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
                             <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" title="Synchronizuj bazę danych">
+                                <a href="<?= base_url('synchronize'); ?>" class="nav-link dropdown-toggle" title="Synchronizuj bazę danych">
                                     <span><i class="fas fa-sync-alt"></i></span>
                                 </a>
                             </li>
@@ -125,11 +141,11 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="active"><a href="<?= base_url('panel/dashboard'); ?>"><i class="notika-icon notika-house"></i> Home</a>
+                        <li <?php if($this->uri->segment(1) == 'admin'){echo 'class="active"';} ?>><a href="<?= base_url('admin'); ?>"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-app"></i> Parametry</a>
+                        <li <?php if($this->uri->segment(1) == 'parametrs'){echo 'class="active"';} ?>><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-app"></i> Parametry</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Wpisy</a>
+                        <li <?php if($this->uri->segment(1) == 'articles'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Wpisy</a>
                         </li>
                         <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Statystyki</a>
                         </li>
@@ -139,30 +155,40 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'parametrs'){echo 'active';} ?>">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="inbox.html">Zobacz wszystkie</a>
+                                <li>
+                                    <a href="<?= base_url('parametrs'); ?>" 
+                                        <?php if($this->uri->segment(1) == 'parametrs' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                        <strong>Zobacz wszystkie</strong>
+                                    </a>
                                 </li>
-                                <li><a href="view-email.html">View Email</a>
+                                <?php foreach ($parametrs as $v): ?>
+                                <li>
+                                    <a href="<?= base_url('parametrs/form/update/'.$v->id); ?>" 
+                                        <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'parametrs'){echo 'class="active_color"';} ?>>
+                                        <?= $v->title; ?>
+                                    </a>
                                 </li>
-                                <li><a href="compose-email.html">Compose Email</a>
-                                </li>
+                                <?php endforeach ?>
                             </ul>
                         </div>
-                        <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'articles'){echo 'active';} ?>">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="animations.html">Zobacz wszystkie</a>
+                                <li>
+                                    <a href="<?= base_url('articles'); ?>" 
+                                        <?php if($this->uri->segment(1) == 'articles' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                        <strong>Zobacz wszystkie</strong>
+                                    </a>
                                 </li>
-                                <li><a href="google-map.html">Google Map</a>
+                                <?php foreach ($articles as $v): ?>
+                                <li>
+                                    <a href="<?= base_url('articles/form/update/'.$v->id); ?>" 
+                                        <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'articles'){echo 'class="active_color"';} ?>>
+                                        <?= $v->title; ?>
+                                    </a>
                                 </li>
-                                <li><a href="data-map.html">Data Maps</a>
-                                </li>
-                                <li><a href="code-editor.html">Code Editor</a>
-                                </li>
-                                <li><a href="image-cropper.html">Images Cropper</a>
-                                </li>
-                                <li><a href="wizard.html">Wizard</a>
-                                </li>
+                                <?php endforeach ?>
                             </ul>
                         </div>
                         <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">

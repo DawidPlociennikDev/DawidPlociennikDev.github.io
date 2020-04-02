@@ -86,7 +86,7 @@
                                 <p>Synchronizacja ręczna danych pogodowych pobieranych z czujnika</p>
                             </div>
                         </div>
-                            <button class="btn btn-default btn-block btn-lg notika-btn-default">Synchronizuj</button>
+                            <a href="<?= base_url('synchronize'); ?>" class="btn btn-default btn-block btn-lg notika-btn-default">Synchronizuj</a>
                     </div>
                 </div>
             </div>
@@ -102,12 +102,12 @@
                         <div class="rc-it-ltd">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Jakość powietrza <small class="float-right">25/03/2020</small></h2>
+                                    <h2>Jakość powietrza <small class="float-right"><?= date('d/m/Y', strtotime($current_sensor_data->created)); ?></small></h2>
                                 </div>
                             </div>
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title text-center">
-                                    <h1>Bardzo dobra</h1>
+                                    <h1><?= $current_sensor_data->IJPString; ?></h1>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -119,26 +119,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>25/03/2020</td>
+                                            <td class="f-500 c-cyan"><?= $v->IJPString; ?></td>
+                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>24/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>23/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>22/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>21/03/2020</td>
-                                        </tr>
+                                        <?php endif; endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -150,43 +136,29 @@
                         <div class="rc-it-ltd">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Temperatura <small class="float-right">25/03/2020</small></h2>
+                                    <h2>Temperatura <small class="float-right"><?= date('d/m/Y', strtotime($current_sensor_data->created)); ?></small></h2>
                                 </div>
                             </div>
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title text-center">
-                                    <h1>13&deg;C</h1>
+                                    <h1><?= $current_sensor_data->Temperature; ?>&deg;C</h1>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <thead>
                                         <tr>
-                                            <th>Jakość</th>
+                                            <th>Temperatura</th>
                                             <th>Data</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>25/03/2020</td>
+                                            <td class="f-500 c-cyan"><?= $v->Temperature; ?>&deg;C</td>
+                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>24/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>23/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>22/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>21/03/2020</td>
-                                        </tr>
+                                        <?php endif; endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -198,43 +170,29 @@
                         <div class="rc-it-ltd">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Wilgotność <small class="float-right">25/03/2020</small></h2>
+                                    <h2>Wilgotność <small class="float-right"><?= date('d/m/Y', strtotime($current_sensor_data->created)); ?></small></h2>
                                 </div>
                             </div>
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title text-center">
-                                    <h1>82%</h1>
+                                    <h1><?= $current_sensor_data->Humidity; ?>%</h1>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <thead>
                                         <tr>
-                                            <th>Jakość</th>
+                                            <th>Wilgotność</th>
                                             <th>Data</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>25/03/2020</td>
+                                            <td class="f-500 c-cyan"><?= $v->Humidity; ?>%</td>
+                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>24/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>23/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Bardzo dobra</td>
-                                            <td>22/03/2020</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="f-500 c-cyan">Dobra</td>
-                                            <td>21/03/2020</td>
-                                        </tr>
+                                        <?php endif; endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

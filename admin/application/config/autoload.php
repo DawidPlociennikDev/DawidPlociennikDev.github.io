@@ -13,4 +13,4 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array('back_m', 'login_m', 'stats_m');
+$autoload['model'] = array('back_m', 'login_m', 'stats_m', 'base_m', 'api_m');
