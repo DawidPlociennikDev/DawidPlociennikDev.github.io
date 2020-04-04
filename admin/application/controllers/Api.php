@@ -12,7 +12,7 @@ class Api extends CI_Controller {
              	->set_output(json_encode($api, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -25,7 +25,7 @@ class Api extends CI_Controller {
              	->set_output(json_encode($api, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 

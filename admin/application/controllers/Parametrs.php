@@ -15,7 +15,7 @@ class Parametrs extends CI_Controller {
 			$data['rows'] = $this->back_m->get_all($this->uri->segment(1));
 			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -29,7 +29,7 @@ class Parametrs extends CI_Controller {
             }
 			echo loadSubViewsBack($this->uri->segment(1), 'form', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	} 
 
@@ -75,7 +75,7 @@ class Parametrs extends CI_Controller {
 
 			redirect($table);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
     }
 }

@@ -29,6 +29,32 @@
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
                             <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                    <?php if($this->back_m->get_one('users', $_SESSION['id'])->avatar != ''){
+                                        echo '<img src="'.base_url('uploads/'.$this->back_m->get_one('users', $_SESSION['id'])->avatar).'" class="img-fluid" width="24">';
+                                    } ?>
+                                    <small><?= $this->back_m->get_one('users', $_SESSION['id'])->first_name . ' ' . $this->back_m->get_one('users', $_SESSION['id'])->last_name; ?></small>
+                                </a>
+                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                    <div class="hd-message-info">
+                                        <a href="<?= base_url('users/form/update/'.$_SESSION['id']); ?>">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-mg-ctn">
+                                                    <h3>Ustawienia konta</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="<?= base_url('home/logout'); ?>">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-mg-ctn">
+                                                    <h3>Wyloguj się</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a href="<?= base_url('synchronize'); ?>" class="nav-link dropdown-toggle" title="Synchronizuj bazę danych">
                                     <span><i class="fas fa-sync-alt"></i></span>
                                 </a>
@@ -49,81 +75,104 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li><a data-toggle="collapse" href="<?= base_url(); ?>">Home</a></li>
-                                <li><a data-toggle="collapse" data-target="#demoevent" href="#">Email</a>
+                                <li><a data-toggle="collapse" data-target="#demoevent" href="#">Parametry</a>
                                     <ul id="demoevent" class="collapse dropdown-header-top">
-                                        <li><a href="inbox.html">Inbox</a></li>
-                                        <li><a href="view-email.html">View Email</a></li>
-                                        <li><a href="compose-email.html">Compose Email</a></li>
+                                        <li>
+                                            <a href="<?= base_url('parametrs'); ?>" 
+                                                <?php if($this->uri->segment(1) == 'parametrs' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                                <strong>Zobacz wszystkie</strong>
+                                            </a>
+                                        </li>
+                                        <?php foreach ($parametrs as $v): ?>
+                                        <li>
+                                            <a href="<?= base_url('parametrs/form/update/'.$v->id); ?>" 
+                                                <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'parametrs'){echo 'class="active_color"';} ?>>
+                                                <?= $v->title; ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach ?>
                                     </ul>
+
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Interface</a>
+                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Wpisy</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="animations.html">Animations</a></li>
-                                        <li><a href="google-map.html">Google Map</a></li>
-                                        <li><a href="data-map.html">Data Maps</a></li>
-                                        <li><a href="code-editor.html">Code Editor</a></li>
-                                        <li><a href="image-cropper.html">Images Cropper</a></li>
-                                        <li><a href="wizard.html">Wizard</a></li>
+                                        <li>
+                                            <a href="<?= base_url('articles'); ?>" 
+                                                <?php if($this->uri->segment(1) == 'articles' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                                <strong>Zobacz wszystkie</strong>
+                                            </a>
+                                        </li>
+                                        <?php foreach ($articles as $v): ?>
+                                        <li>
+                                            <a href="<?= base_url('articles/form/update/'.$v->id); ?>" 
+                                                <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'articles'){echo 'class="active_color"';} ?>>
+                                                <?= $v->title; ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach ?>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
+                                <li><a data-toggle="collapse" data-target="#demolibra" href="#">Statystyki</a>
                                     <ul id="demolibra" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">Flot Charts</a></li>
-                                        <li><a href="bar-charts.html">Bar Charts</a></li>
-                                        <li><a href="line-charts.html">Line Charts</a></li>
-                                        <li><a href="area-charts.html">Area Charts</a></li>
+                                        <li><a href="<?= base_url('statistics'); ?>"
+                                            <?php if($this->uri->segment(1) == 'statistics' && $this->uri->segment(2) == ''){echo 'class="active_color"';} ?>>
+                                            <strong>Zobacz aktualne</strong>
+                                        </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('statistics/yesterday'); ?>" <?php if($this->uri->segment(2) == 'yesterday' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                                Z wczoraj
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('statistics/lastweek'); ?>" <?php if($this->uri->segment(2) == 'lastweek' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                                Z poprzedniego tygodnia
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('statistics/lastmonth'); ?>" <?php if($this->uri->segment(2) == 'lastmonth' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                                Z poprzedniego miesiąca
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('statistics/owntime'); ?>" <?php if($this->uri->segment(2) == 'owntime' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                                Z własnego przedziału czasowego
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
+                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Ustawienia</a>
                                     <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="normal-table.html">Normal Table</a></li>
-                                        <li><a href="data-table.html">Data Table</a></li>
+                                        <li><a href="<?= base_url('settings/page/1'); ?>" <?php if($this->uri->segment(2) == 'page'){echo 'class="active_color"';} ?>>Strona</a>
+                                        </li>
+                                        <li><a href="<?= base_url('settings/seo/2'); ?>" <?php if($this->uri->segment(2) == 'seo'){echo 'class="active_color"';} ?>>SEO</a>
+                                        </li>
+                                        <li><a href="<?= base_url('settings/privace/3'); ?>" <?php if($this->uri->segment(2) == 'privace'){echo 'class="active_color"';} ?>>Polityka prywatności</a>
+                                        </li>
+                                        <li><a href="<?= base_url('settings/cookies/4'); ?>" <?php if($this->uri->segment(2) == 'cookies'){echo 'class="active_color"';} ?>>Informacja cookies</a>
+                                        </li>
+                                        <!-- <li><a href="<?= base_url('settings/google/5'); ?>" <?php if($this->uri->segment(2) == 'google'){echo 'class="active_color"';} ?>>Kody autoryzujące google</a>
+                                        </li> -->
+                                        <li><a href="<?= base_url('settings/code_head/6'); ?>" <?php if($this->uri->segment(2) == 'code_head'){echo 'class="active_color"';} ?>>Kody w sekcji HEAD</a>
+                                        </li>
+                                        <li><a href="<?= base_url('settings/code_footer/7'); ?>" <?php if($this->uri->segment(2) == 'code_footer'){echo 'class="active_color"';} ?>>Kody w sekcji FOOTER</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
+                                <li><a data-toggle="collapse" data-target="#demo" href="#">Konto</a>
                                     <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="form-elements.html">Form Elements</a></li>
-                                        <li><a href="form-components.html">Form Components</a></li>
-                                        <li><a href="form-examples.html">Form Examples</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">App views</a>
-                                    <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                        <li><a href="notification.html">Notifications</a>
+                                        <li>
+                                            <a href="<?= base_url('users/form/update/'.$_SESSION['id']); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(4) == $_SESSION['id']){echo 'class="active_color"';} ?>>
+                                                <strong>Ustawienia konta</strong>
+                                            </a>
                                         </li>
-                                        <li><a href="alert.html">Alerts</a>
+                                        <li>
+                                            <a href="<?= base_url('users'); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(2) == ''){echo 'class="active_color"';} ?>>
+                                                Wszystkie konta
+                                            </a>
                                         </li>
-                                        <li><a href="modals.html">Modals</a>
-                                        </li>
-                                        <li><a href="buttons.html">Buttons</a>
-                                        </li>
-                                        <li><a href="tabs.html">Tabs</a>
-                                        </li>
-                                        <li><a href="accordion.html">Accordion</a>
-                                        </li>
-                                        <li><a href="dialog.html">Dialogs</a>
-                                        </li>
-                                        <li><a href="popovers.html">Popovers</a>
-                                        </li>
-                                        <li><a href="tooltips.html">Tooltips</a>
-                                        </li>
-                                        <li><a href="dropdown.html">Dropdowns</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages</a>
-                                    <ul id="Pagemob" class="collapse dropdown-header-top">
-                                        <li><a href="contact.html">Contact</a>
-                                        </li>
-                                        <li><a href="invoice.html">Invoice</a>
-                                        </li>
-                                        <li><a href="typography.html">Typography</a>
-                                        </li>
-                                        <li><a href="color.html">Color</a>
-                                        </li>
-                                        <li><a href="login-register.html">Login Register</a>
-                                        </li>
-                                        <li><a href="404.html">404 Page</a>
+                                        <li>
+                                            <a href="<?= base_url('users/form/insert'); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(3) == 'insert'){echo 'class="active_color"';} ?>>Dodaj nowe</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -149,9 +198,9 @@
                         </li>
                         <li <?php if($this->uri->segment(1) == 'statistics'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Statystyki</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Ustawienia</a>
+                        <li <?php if($this->uri->segment(1) == 'settings'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Ustawienia</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-support"></i> Konto</a>
+                        <li <?php if($this->uri->segment(1) == 'users'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-support"></i> Konto</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
@@ -220,29 +269,38 @@
                                 </li>
                             </ul>
                         </div>
-                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'settings'){echo 'active';} ?>">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="normal-table.html">Strona</a>
+                                <li><a href="<?= base_url('settings/page/1'); ?>" <?php if($this->uri->segment(2) == 'page'){echo 'class="active_color"';} ?>>Strona</a>
                                 </li>
-                                <li><a href="data-table.html">SEO</a>
+                                <li><a href="<?= base_url('settings/seo/2'); ?>" <?php if($this->uri->segment(2) == 'seo'){echo 'class="active_color"';} ?>>SEO</a>
                                 </li>
-                                <li><a href="data-table.html">Polityka prywatności</a>
+                                <li><a href="<?= base_url('settings/privace/3'); ?>" <?php if($this->uri->segment(2) == 'privace'){echo 'class="active_color"';} ?>>Polityka prywatności</a>
                                 </li>
-                                <li><a href="data-table.html">Informacja cookies</a>
+                                <li><a href="<?= base_url('settings/cookies/4'); ?>" <?php if($this->uri->segment(2) == 'cookies'){echo 'class="active_color"';} ?>>Informacja cookies</a>
                                 </li>
-                                <li><a href="data-table.html">Kody autoryzujące google</a>
+                                <!-- <li><a href="<?= base_url('settings/google/5'); ?>" <?php if($this->uri->segment(2) == 'google'){echo 'class="active_color"';} ?>>Kody autoryzujące google</a>
+                                </li> -->
+                                <li><a href="<?= base_url('settings/code_head/6'); ?>" <?php if($this->uri->segment(2) == 'code_head'){echo 'class="active_color"';} ?>>Kody w sekcji HEAD</a>
                                 </li>
-                                <li><a href="data-table.html">Kody w sekcji HEAD</a>
-                                </li>
-                                <li><a href="data-table.html">Kody w sekcji FOOTER</a>
+                                <li><a href="<?= base_url('settings/code_footer/7'); ?>" <?php if($this->uri->segment(2) == 'code_footer'){echo 'class="active_color"';} ?>>Kody w sekcji FOOTER</a>
                                 </li>
                             </ul>
                         </div>
-                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'users'){echo 'active';} ?>">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="form-elements.html">Ustawienia konta</a>
+                                <li>
+                                    <a href="<?= base_url('users/form/update/'.$_SESSION['id']); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(4) == $_SESSION['id']){echo 'class="active_color"';} ?>>
+                                        <strong>Ustawienia konta</strong>
+                                    </a>
                                 </li>
-                                <li><a href="form-components.html">Dodaj nowe</a>
+                                <li>
+                                    <a href="<?= base_url('users'); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(2) == ''){echo 'class="active_color"';} ?>>
+                                        Wszystkie konta
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('users/form/insert'); ?>" <?php if($this->uri->segment(1) == 'users' && $this->uri->segment(3) == 'insert'){echo 'class="active_color"';} ?>>Dodaj nowe</a>
                                 </li>
                             </ul>
                         </div>

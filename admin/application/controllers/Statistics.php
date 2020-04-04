@@ -14,7 +14,7 @@ class Statistics extends CI_Controller {
 			$data['min_parametrs'] = $this->stats_m->get_min('sensor_data');
 			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -29,7 +29,7 @@ class Statistics extends CI_Controller {
 			$data['min_parametrs'] = $this->stats_m->get_min_date('sensor_data', $yesterday, $yesterday);
 			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -45,7 +45,7 @@ class Statistics extends CI_Controller {
 			$data['min_parametrs'] = $this->stats_m->get_min_date('sensor_data', $lastweekFirstDay, $lastweekLastDay);
 			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -61,7 +61,7 @@ class Statistics extends CI_Controller {
 			$data['min_parametrs'] = $this->stats_m->get_min_date('sensor_data', $lastmonthFirstDay, $lastmonthLastDay);
 			echo loadSubViewsBack($this->uri->segment(1), 'index', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -71,7 +71,7 @@ class Statistics extends CI_Controller {
 			$data = loadDefaultData();
 			echo loadSubViewsBack($this->uri->segment(1), 'owntime', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 
@@ -87,7 +87,7 @@ class Statistics extends CI_Controller {
 			$data['min_parametrs'] = $this->stats_m->get_min_date('sensor_data', $start, $end);
 			$this->load->view('pages/statistics/renderOwntime', $data);
 		} else {
-			redirect('panel');
+			redirect('');
 		}
 	}
 

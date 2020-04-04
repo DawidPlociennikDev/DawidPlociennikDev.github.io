@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Articles extends CI_Controller {
+class Users extends CI_Controller {
 
 	public function index() {
 		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
@@ -50,7 +50,7 @@ class Articles extends CI_Controller {
 			if(isset($_FILES)) {
 				if ($this->upload->do_upload('photo')) {
 					$data = $this->upload->data();
-					$insert['photo'] = $now.'/'.$data['file_name'];  
+					$insert['avatar'] = $now.'/'.$data['file_name'];  
 				}
 			}
 
@@ -59,11 +59,15 @@ class Articles extends CI_Controller {
 					$this->base_m->create_column($table, $key);
 				}
 				if($key == 'removed_photo') {
-					$insert['photo'] = ''; 
-				} else {
+					$insert['avatar'] = ''; 
+				} elseif($key == 'password') {
+					$insert[$key] = hashPassword($value); 
+				}
+				else {
 					$insert[$key] = $value; 
 				}
             }
+			$insert['rola'] = 'administrator'; 
 
             if($type == 'insert') {
 			    $this->back_m->insert($table, $insert);

@@ -20,7 +20,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Panel administracyjny - AD Awards</title>
+    <title>Panel administracyjny - PWSZ Legnica</title>
 
     <link href="<?php echo base_url(); ?>assets/login/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/login/lib/Ionicons/css/ionicons.css" rel="stylesheet">
@@ -30,7 +30,7 @@
   <body>
     <form method="post" action="<?php echo base_url(); ?>" class="d-flex align-items-center justify-content-center bg-gray-900 ht-100v">
       <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
-        <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> AD Awards <span class="tx-normal">]</span></div>
+        <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> PWSZ <span class="tx-normal">]</span></div>
         <div class="tx-center mg-b-60">Panel administracyjny dla Perfekcjonisty</div>
 
         <?php if(isset($_SESSION['flashdata'])): ?>

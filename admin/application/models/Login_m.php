@@ -14,6 +14,7 @@ class Login_m extends CI_Model
 				$session_data['email'] = $check->email;
 				$session_data['name'] = $check->login;
 				$session_data['rola'] = $check->rola;
+                $session_data['avatar'] = $check->avatar;
 				$session_data['login'] = TRUE;
 				$this->session->set_userdata($session_data);
 				$logged = true;

@@ -33,7 +33,7 @@
 	font-weight: bold;
 	color: #00C292 !important;
 }
-#photoViewer {
+#photoViewer, #logoViewer, #faviconViewer {
 	position: relative;
 	display: inline-block;
 }
