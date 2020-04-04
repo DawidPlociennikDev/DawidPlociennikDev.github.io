@@ -18,4 +18,55 @@ class Stats_m extends CI_Model
         return $query->result();
     }
 
+    public function get_max($table) {
+        $this->db->select_max('Temperature');
+        $this->db->select_max('Humidity');
+        $this->db->select_max('PM1');
+        $this->db->select_max('PM25');
+        $this->db->select_max('PM10');
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function get_min($table) {
+        $this->db->select_min('Temperature');
+        $this->db->select_min('Humidity');
+        $this->db->select_min('PM1');
+        $this->db->select_min('PM25');
+        $this->db->select_min('PM10');
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function get_all_date($table, $start, $end) {
+        $this->db->where('created >=', $start);
+        $this->db->where('created <=', $end);
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function get_max_date($table, $start, $end) {
+        $this->db->where('created >=', $start);
+        $this->db->where('created <=', $end);
+        $this->db->select_max('Temperature');
+        $this->db->select_max('Humidity');
+        $this->db->select_max('PM1');
+        $this->db->select_max('PM25');
+        $this->db->select_max('PM10');
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function get_min_date($table, $start, $end) {
+        $this->db->where('created >=', $start);
+        $this->db->where('created <=', $end);
+        $this->db->select_min('Temperature');
+        $this->db->select_min('Humidity');
+        $this->db->select_min('PM1');
+        $this->db->select_min('PM25');
+        $this->db->select_min('PM10');
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
 }

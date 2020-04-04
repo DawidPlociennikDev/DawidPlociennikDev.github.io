@@ -35,3 +35,11 @@
     <script src="<?= assetsUrl(); ?>js/summernote/summernote-updated.min.js"></script>
     <script src="<?= assetsUrl(); ?>js/summernote/summernote-active.js"></script>
     <script src="<?= assetsUrl(); ?>js/photoHelper.js"></script>
+    <script src="<?= assetsUrl(); ?>js/charts/Chart.js"></script>
+    <?php if($this->uri->segment(1) == 'statistics' || $this->uri->segment(1) == 'yesterday' || $this->uri->segment(1) == 'lastweek' || $this->uri->segment(1) == 'lastmonth'): ?>
+    <script>loadChart()</script>
+    <?php endif; ?>
+    <script src="<?= assetsUrl(); ?>js/color-picker/farbtastic.min.js"></script>
+    <script src="<?= assetsUrl(); ?>js/color-picker/color-picker.js"></script>
+    <script src="<?= assetsUrl(); ?>js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="<?= assetsUrl(); ?>js/datapicker/datepicker-active.js"></script>

@@ -19,3 +19,5 @@
     <link rel="stylesheet" href="<?= assetsUrl(); ?>new-style.css">
     <link rel="stylesheet" href="<?= assetsUrl(); ?>css/responsive.css">
     <script src="<?= assetsUrl(); ?>js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="<?= assetsUrl(); ?>css/color-picker/farbtastic.css">
+    <link rel="stylesheet" href="<?= assetsUrl(); ?>css/datapicker/datepicker3.css">

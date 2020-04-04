@@ -26,7 +26,28 @@
                                 <div class="form-group ic-cmp-int">
                                     <div class="nk-int-st">
                                         <label class="nk-label">Nazwa kodowa <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="code" placeholder="Opcjonalny" value="<?= @$v->code; ?>" <?= $readonly; ?> required>
+                                        <input type="text" class="form-control" name="code" placeholder="Wymagany" value="<?= @$v->code; ?>" <?= $readonly; ?> required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-margin">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="nk-container fm-cmp-mg">
+                                        <div class="input-group form-group form-elet-mg">
+                                            <label class="nk-label">Kolor <span class="text-danger">*</span></label>
+                                            <div class="nk-line dropdown nk-int-st">
+                                                <?php if(@$v->color != '') {
+                                                    $color = @$v->color;
+                                                } else {
+                                                    $color = '#c22300';
+                                                } ?>
+                                                <input type="text" class="form-control nk-value" value="<?= @$color; ?>" data-toggle="dropdown" name="color">
+                                                <div class="dropdown-menu">
+                                                    <div class="color-picker" data-cp-default="<?= @$color; ?>"></div>
+                                                </div>
+                                                <i class="nk-value"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

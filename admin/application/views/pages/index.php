@@ -122,7 +122,7 @@
                                         <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
                                             <td class="f-500 c-cyan"><?= $v->IJPString; ?></td>
-                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
+                                            <td><?= date('H:i d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
                                         <?php endif; endforeach ?>
                                     </tbody>
@@ -156,7 +156,7 @@
                                         <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
                                             <td class="f-500 c-cyan"><?= $v->Temperature; ?>&deg;C</td>
-                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
+                                            <td><?= date('H:i d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
                                         <?php endif; endforeach ?>
                                     </tbody>
@@ -190,7 +190,7 @@
                                         <?php foreach ($sensor_data as $v): if($current_sensor_data->id != $v->id): ?>
                                         <tr>
                                             <td class="f-500 c-cyan"><?= $v->Humidity; ?>%</td>
-                                            <td><?= date('d/m/Y', strtotime($v->created)); ?></td>
+                                            <td><?= date('H:i d/m/Y', strtotime($v->created)); ?></td>
                                         </tr>
                                         <?php endif; endforeach ?>
                                     </tbody>

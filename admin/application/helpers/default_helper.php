@@ -5,7 +5,7 @@ function loadDefaultData() {
     $CI = &get_instance();
 	$data['user'] = $CI->back_m->get_one('users', $_SESSION['id']);
 	$data['articles'] = $CI->back_m->get_limit('articles', 6);
-	$data['parametrs'] = $CI->back_m->get_parametrs('parametrs', 6);
+	$data['parametrs'] = $CI->back_m->get_limit('parametrs', 6);
 
     return $data;
 }

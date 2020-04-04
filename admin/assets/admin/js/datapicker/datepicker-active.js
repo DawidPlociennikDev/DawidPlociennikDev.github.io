@@ -5,7 +5,8 @@
 		keyboardNavigation: false,
 		forceParse: false,
 		calendarWeeks: true,
-		autoclose: true
+		autoclose: true,
+		format: "dd.mm.yyyy"
 	});
 
 	$('#data_2 .input-group.date').datepicker({
@@ -14,7 +15,7 @@
 		keyboardNavigation: false,
 		forceParse: false,
 		autoclose: true,
-		format: "dd/mm/yyyy"
+		format: "dd.mm.yyyy"
 	});
 
 	$('#data_3 .input-group.date').datepicker({

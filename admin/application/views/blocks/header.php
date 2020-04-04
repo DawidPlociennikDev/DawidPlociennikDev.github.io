@@ -147,7 +147,7 @@
                         </li>
                         <li <?php if($this->uri->segment(1) == 'articles'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Wpisy</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Statystyki</a>
+                        <li <?php if($this->uri->segment(1) == 'statistics'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Statystyki</a>
                         </li>
                         <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Ustawienia</a>
                         </li>
@@ -191,15 +191,32 @@
                                 <?php endforeach ?>
                             </ul>
                         </div>
-                        <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'statistics'){echo 'active';} ?>">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="flot-charts.html">Zobacz wszystkie</a>
+                                <li><a href="<?= base_url('statistics'); ?>"
+                                    <?php if($this->uri->segment(1) == 'statistics' && $this->uri->segment(2) == ''){echo 'class="active_color"';} ?>>
+                                    <strong>Zobacz aktualne</strong>
+                                </a>
                                 </li>
-                                <li><a href="bar-charts.html">Bar Charts</a>
+                                <li>
+                                    <a href="<?= base_url('statistics/yesterday'); ?>" <?php if($this->uri->segment(2) == 'yesterday' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                        Z wczoraj
+                                    </a>
                                 </li>
-                                <li><a href="line-charts.html">Line Charts</a>
+                                <li>
+                                    <a href="<?= base_url('statistics/lastweek'); ?>" <?php if($this->uri->segment(2) == 'lastweek' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                        Z poprzedniego tygodnia
+                                    </a>
                                 </li>
-                                <li><a href="area-charts.html">Area Charts</a>
+                                <li>
+                                    <a href="<?= base_url('statistics/lastmonth'); ?>" <?php if($this->uri->segment(2) == 'lastmonth' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                        Z poprzedniego miesiąca
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('statistics/owntime'); ?>" <?php if($this->uri->segment(2) == 'owntime' && $this->uri->segment(1) == 'statistics'){echo 'class="active_color"';} ?>>
+                                        Z własnego przedziału czasowego
+                                    </a>
                                 </li>
                             </ul>
                         </div>
