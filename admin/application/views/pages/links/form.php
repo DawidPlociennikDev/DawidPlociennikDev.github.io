@@ -15,9 +15,9 @@
                                 </div>
                                 <div class="bootstrap-select fm-cmp-mg">
                                     <select class="selectpicker" name="category" data-live-search="true" required>
-                                        <option value="0" <?php if(@$v->category == '0'){echo 'selected';} ?>>Jakość powietrza</option>
-                                        <option value="1" <?php if(@$v->category == '1'){echo 'selected';} ?>>Temperatura</option>
-                                        <option value="2" <?php if(@$v->category == '2'){echo 'selected';} ?>>Wilgotność</option>
+                                        <option value="0" <?php if($v->category == '0'){echo 'selected';} ?>>Jakość powietrza</option>
+                                        <option value="1" <?php if($v->category == '1'){echo 'selected';} ?>>Temperatura</option>
+                                        <option value="2" <?php if($v->category == '2'){echo 'selected';} ?>>Wilgotność</option>
                                     </select>
                                 </div>
                             </div>

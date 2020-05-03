@@ -94,7 +94,7 @@
                                     </ul>
 
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Wpisy</a>
+                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Blog</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
                                         <li>
                                             <a href="<?= base_url('articles'); ?>" 
@@ -106,6 +106,24 @@
                                         <li>
                                             <a href="<?= base_url('articles/form/update/'.$v->id); ?>" 
                                                 <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'articles'){echo 'class="active_color"';} ?>>
+                                                <?= $v->title; ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach ?>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Ciekawe linki</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li>
+                                            <a href="<?= base_url('links'); ?>" 
+                                                <?php if($this->uri->segment(1) == 'links' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                                <strong>Zobacz wszystkie</strong>
+                                            </a>
+                                        </li>
+                                        <?php foreach ($links as $v): ?>
+                                        <li>
+                                            <a href="<?= base_url('links/form/update/'.$v->id); ?>" 
+                                                <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'links'){echo 'class="active_color"';} ?>>
                                                 <?= $v->title; ?>
                                             </a>
                                         </li>
@@ -194,11 +212,13 @@
                         </li>
                         <li <?php if($this->uri->segment(1) == 'parametrs'){echo 'class="active"';} ?>><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-app"></i> Parametry</a>
                         </li>
-                        <li <?php if($this->uri->segment(1) == 'articles'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Wpisy</a>
+                        <li <?php if($this->uri->segment(1) == 'articles'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Blog</a>
+                        </li>
+                        <li <?php if($this->uri->segment(1) == 'links'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Links"><i class="notika-icon notika-paperclip"></i> Ciekawe linki</a>
                         </li>
                         <li <?php if($this->uri->segment(1) == 'statistics'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Statystyki</a>
                         </li>
-                        <li <?php if($this->uri->segment(1) == 'settings'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Ustawienia</a>
+                        <li <?php if($this->uri->segment(1) == 'settings'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-settings"></i> Ustawienia</a>
                         </li>
                         <li <?php if($this->uri->segment(1) == 'users'){echo 'class="active"';} ?>><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-support"></i> Konto</a>
                         </li>
@@ -234,6 +254,24 @@
                                 <li>
                                     <a href="<?= base_url('articles/form/update/'.$v->id); ?>" 
                                         <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'articles'){echo 'class="active_color"';} ?>>
+                                        <?= $v->title; ?>
+                                    </a>
+                                </li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                        <div id="Links" class="tab-pane notika-tab-menu-bg animated flipInX <?php if($this->uri->segment(1) == 'links'){echo 'active';} ?>">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="<?= base_url('links'); ?>" 
+                                        <?php if($this->uri->segment(1) == 'links' && $this->uri->segment(3) == ''){echo 'class="active_color"';} ?>>
+                                        <strong>Zobacz wszystkie</strong>
+                                    </a>
+                                </li>
+                                <?php foreach ($links as $v): ?>
+                                <li>
+                                    <a href="<?= base_url('links/form/update/'.$v->id); ?>" 
+                                        <?php if($this->uri->segment(4) == $v->id && $this->uri->segment(1) == 'links'){echo 'class="active_color"';} ?>>
                                         <?= $v->title; ?>
                                     </a>
                                 </li>

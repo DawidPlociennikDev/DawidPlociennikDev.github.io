@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Articles extends CI_Controller {
+class Links extends CI_Controller {
 
 	public function index() {
 		if(checkAccess($access_group = ['administrator'], $_SESSION['rola'])) {
@@ -77,16 +77,5 @@ class Articles extends CI_Controller {
 		} else {
 			redirect('');
 		}
-    }
-
-    public function api() {
-		$articleData = $this->back_m->get_all($this->uri->segment(1));
-		$response = array('status' => 'OK');
-		$this->output
-		        ->set_status_header(200)
-		        ->set_content_type('application/json', 'utf-8')
-		        ->set_output(json_encode($articleData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-		        ->_display();
-		exit;
     }
 }
