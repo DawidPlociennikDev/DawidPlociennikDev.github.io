@@ -10,15 +10,11 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 form-margin">
-                                <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-                                    <label class="nk-label">Wybierz kategorię <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="bootstrap-select fm-cmp-mg">
-                                    <select class="selectpicker" name="category" data-live-search="true" required>
-                                        <option value="0" <?php if($v->category == '0'){echo 'selected';} ?>>Jakość powietrza</option>
-                                        <option value="1" <?php if($v->category == '1'){echo 'selected';} ?>>Temperatura</option>
-                                        <option value="2" <?php if($v->category == '2'){echo 'selected';} ?>>Wilgotność</option>
-                                    </select>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="nk-int-st">
+                                        <label class="nk-label">Adres URL <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="url" placeholder="Wymagany" value="<?= @$v->url; ?>" required>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 form-margin">
@@ -30,46 +26,10 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 form-margin">
-                                <div class="form-group ic-cmp-int">
-                                    <div class="nk-int-st">
-                                        <label class="nk-label">Podtytuł</label>
-                                        <input type="text" class="form-control" name="subtitle" placeholder="Opcjonalny" value="<?= @$v->subtitle; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 form-margin">
                                 <div class="form-group">
                                     <div class="nk-int-st">
                                         <label class="nk-label">Krótki opis</label>
-                                        <textarea class="form-control" name="short_desc" rows="5" placeholder="Krótki opis wstępny przed wejściem do wpisu..."><?= @$v->short_desc; ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="cmp-tb-hd bsc-smp-sm">
-                                    <label>Edytor tekstowy</label>
-                                </div>
-                                <textarea class="html-editor" name="description"><?= @$v->description; ?></textarea>
-                            </div>
-                            <div class="col-xs-12 form-margin">
-                                <div class="form-group ic-cmp-int">
-                                    <div id="photoViewer">
-                                        <?php if(@$v->photo != ''): ?>
-                                        <div class="remove-button" onclick="removePhoto('photoViewer')">
-                                            <i class="fas fa-times"></i>
-                                        </div>
-                                        <img src="<?= base_url('uploads/'.@$v->photo); ?>" class="img-fluid img-thumbnail" width="120px">
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="nk-int-st">
-                                        <label class="nk-label">Wybierz zdjęcie wpisu</label>
-                                        <input id="photo" type="file" name="photo" class="form-control" value="<?= @$v->photo; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group ic-cmp-int">
-                                    <div class="nk-int-st">
-                                        <label class="nk-label">Tekst alternatywny zdjęcia</label>
-                                        <input type="text" name="alt" class="form-control" value="<?= @$v->alt; ?>">
+                                        <textarea class="form-control" name="short_desc" rows="5" placeholder="Krótki opis wstępny..."><?= @$v->short_desc; ?></textarea>
                                     </div>
                                 </div>
                             </div>

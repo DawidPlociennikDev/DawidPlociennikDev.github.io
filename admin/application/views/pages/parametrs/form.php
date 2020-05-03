@@ -14,6 +14,16 @@
                             <p>Uzupełnij formularz i zatwierdź przyciskiem ZAPISZ, aby dodać nowy wpis</p>
                         </div>
                         <div class="row">
+                            <?php if($v->id <= 3): ?>
+                            <div class="col-xs-12 form-margin">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="nk-int-st">
+                                        <label class="nk-label">Adres URL <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="url" placeholder="Wymagany" value="<?= @$v->url; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endif; ?>
                             <div class="col-xs-12 form-margin">
                                 <div class="form-group ic-cmp-int">
                                     <div class="nk-int-st">
@@ -51,6 +61,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php if($v->id > 1): ?>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <div class="nk-int-st">
@@ -59,28 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 form-margin">
-                                <div class="form-group ic-cmp-int">
-                                    <div id="photoViewer">
-                                        <?php if(@$v->photo != ''): ?>
-                                        <div class="remove-button" onclick="removePhoto()">
-                                            <i class="fas fa-times"></i>
-                                        </div>
-                                        <img src="<?= base_url('uploads/'.@$v->photo); ?>" class="img-fluid img-thumbnail" width="120px">
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="nk-int-st">
-                                        <label class="nk-label">Wybierz zdjęcie parametru</label>
-                                        <input id="photo" type="file" name="photo" class="form-control" value="<?= @$v->photo; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group ic-cmp-int">
-                                    <div class="nk-int-st">
-                                        <label class="nk-label">Tekst alternatywny zdjęcia</label>
-                                        <input type="text" name="alt" class="form-control" value="<?= @$v->alt; ?>">
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                         <div class="summernote-clickable text-right" style="margin-bottom: 0;">
                             <button class="btn btn-success btn-sm hec-save">Zapisz</button>

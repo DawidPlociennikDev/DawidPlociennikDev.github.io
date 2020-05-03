@@ -54,7 +54,6 @@ $category[2] = 'Wilgotność'; ?>
                                     <tr>
                                         <th>Lp.</th>
                                         <th>Tytuł</th>
-                                        <th>Kategoria</th>
                                         <th>Data utworzenia</th>
                                         <th></th>
                                     </tr>
@@ -80,7 +79,6 @@ $category[2] = 'Wilgotność'; ?>
                                     <tr>
                                         <th>Lp.</th>
                                         <th>Tytuł</th>
-                                        <th>Kategoria</th>
                                         <th>Data utworzenia</th>
                                         <th></th>
                                     </tr>

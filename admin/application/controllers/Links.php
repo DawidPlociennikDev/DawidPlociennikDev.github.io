@@ -78,4 +78,31 @@ class Links extends CI_Controller {
 			redirect('');
 		}
     }
+
+    public function api() {
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Methods: GET, OPTIONS");
+		$articleData = $this->back_m->get_all($this->uri->segment(1));
+		$response = array('status' => 'OK');
+		$this->output
+		        ->set_status_header(200)
+		        ->set_content_type('application/json', 'utf-8')
+		        ->set_output(json_encode($articleData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+		        ->_display();
+		exit;
+    }
+
+    public function apiOne($id) {
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Methods: GET, OPTIONS");
+		$articleData = $this->back_m->get_one($this->uri->segment(1), $id);
+		$response = array('status' => 'OK');
+		$this->output
+		        ->set_status_header(200)
+		        ->set_content_type('application/json', 'utf-8')
+		        ->set_output(json_encode($articleData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+		        ->_display();
+		exit;
+    }
+    
 }

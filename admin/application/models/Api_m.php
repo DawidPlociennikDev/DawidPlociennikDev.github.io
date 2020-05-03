@@ -14,4 +14,9 @@ class Api_m extends CI_Model
         $query = $this->db->get($table);
         return $query->row();
     }
+    public function parametrs_startpage($table, $id) {
+        $this->db->where(['id' => $id]);
+        $query = $this->db->get($table);
+        return $query->row();
+    }
 }

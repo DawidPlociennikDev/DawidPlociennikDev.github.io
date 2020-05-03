@@ -62,13 +62,11 @@ class Back_m extends CI_Model
     }
 
     public function insert($table, $data) {
-        $data = $this->security->xss_clean($data);
         $query = $this->db->insert($table, $data);
         return $query;
     }
 
     public function update($table, $data, $id) {
-        $data = $this->security->xss_clean($data);
         $this->db->where(['id' => $id]);
         $query = $this->db->update($table, $data);
         return $query;
