@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Articles extends CI_Controller {
 
 	public function index() {
@@ -80,6 +79,8 @@ class Articles extends CI_Controller {
     }
 
     public function api() {
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Methods: GET, OPTIONS");
 		$articleData = $this->back_m->get_all($this->uri->segment(1));
 		$response = array('status' => 'OK');
 		$this->output
